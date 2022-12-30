@@ -31,7 +31,13 @@ func init() {
 
 func helloHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
-	io.WriteString(w, "Hello, world!")
+	io.WriteString(w, "Hello, ")
+	q := r.URL.Query()
+	if name := q.Get("name"); name == "" {
+		io.WriteString(w, "world!")
+	} else {
+		io.WriteString(w, name+"!")
+	}
 }
 
 func wrongHandler(w http.ResponseWriter, r *http.Request) {
