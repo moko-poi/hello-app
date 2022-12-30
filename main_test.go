@@ -19,6 +19,7 @@ func TestHelloHandler(t *testing.T) {
 		wantBody   string
 	}{
 		{method: "GET", target: "/hello", wantStatus: http.StatusOK, wantBody: "Hello, world!"},
+		{method: "GET", target: "/hello?name=foo", wantStatus: http.StatusOK, wantBody: "Hello, foo!"},
 	}
 
 	for _, c := range cases {
